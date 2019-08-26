@@ -3,3 +3,9 @@
 require './lib/best_books'
 
 BestBooks::CLI.new.call
+
+#sort out remaining questions/decisions
+#test
+#refactor and consider other functions
+#test
+#fix gemspec

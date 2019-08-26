@@ -2,19 +2,17 @@ class BestBooks::CLI
   attr_accessor :year
   
   def initialize
-    @year = Time.now.year - 1
+    @year = Time.now.year - 1 #awards for current year happen at the end of the year. Future possibility: let user define which year to look at.
+    BestBooks::Books.make_books(@year)
   end
   
   def call
-    #executable method
     list_categories
     menu
-    puts "Goodbye."
   end
   
   def list_categories
-    #get from scraper on main page
-    puts "Goodreads Choice Awards Categories for #{@year.to_s}"
+    puts "Goodreads Choice Awards Categories for #{@year.to_s}:"
     
     @books = BestBooks::Books.all
     @books.each.with_index(1) do |book, i| 
@@ -29,13 +27,22 @@ class BestBooks::CLI
       selection = gets.strip.downcase
       
       if selection.to_i > 0
-        puts @books[selection.to_i - 1] ##flesh out to show book info once scraper is working
+        book = @books[selection.to_i - 1]
+        book.add_deets
+        ###replace below with heredoc?
+        puts ""
+        puts "Best #{book.category} #{@year}:" ### This is weird for #5 'best of the best' category
+        puts "#{book.title} by #{book.author}"
+        puts "#{book.votes}"
+        puts ""
+        puts "#{book.blurb}"
+        puts ""
       elsif selection == "list"
         list_categories
       elsif selection == "exit"
-        #puts "goodbye" ##consider where to put goodbye (currently in #call)
+        puts "Thanks for reading. Goodbye."
       else
-        puts "I'm not sure what you mean. Please type 'list' or 'exit'."
+        puts "I'm not sure what you mean. Please type a category number, 'list', or 'exit'."
       end
     end
   end
