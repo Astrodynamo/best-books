@@ -4,8 +4,9 @@ require './lib/best_books'
 
 BestBooks::CLI.new.call
 
-#sort out remaining questions/decisions
-#test
 #refactor and consider other functions
+#record coding video
 #test
-#fix gemspec
+#fix gemspec for publishing?
+#record walkthrough video
+#blog post

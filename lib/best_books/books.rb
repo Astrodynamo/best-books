@@ -25,7 +25,6 @@ class BestBooks::Books
     self.title = doc.css("a.winningTitle").text.strip
     self.author = doc.css("a.authorName span").text.strip
     self.blurb = doc.search("#description").text.strip.gsub("â\u0080\u0099", "'")
-    ###consider adding book covers?
   end
   
 end
