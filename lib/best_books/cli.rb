@@ -2,7 +2,7 @@ class BestBooks::CLI
   attr_accessor :year
   
   def initialize
-    @year = Time.now.year - 1 #awards for current year happen at the end of the year. Future possibility: let user define which year to look at.
+    @year = Time.now.year - 1 #awards for current year happen at the end of the year.
     BestBooks::Books.make_books(@year)
   end
   
@@ -26,17 +26,14 @@ class BestBooks::CLI
       puts "Choose a category number to see the latest winner, type 'list' to see the list again, or type 'exit'."
       selection = gets.strip.downcase
       
-      if selection.to_i > 0
+      if selection.to_i > 0 ### needs upper limiter, use @books size
         book = @books[selection.to_i - 1]
-        book.add_deets
-        ###replace below with heredoc?
-        puts ""
-        puts "Best #{book.category} #{@year}:" ### This is weird for #5 'best of the best' category
+        book.add_deets ### need to eliminate double scraping for same selection
+        puts "\nBest #{book.category} #{@year}:" ### This is weird for #5 'best of the best' category
         puts "#{book.title} by #{book.author}"
         puts "#{book.votes}"
-        puts ""
-        puts "#{book.blurb}"
-        puts ""
+        puts "\n#{book.blurb}\n "
+
       elsif selection == "list"
         list_categories
       elsif selection == "exit"
