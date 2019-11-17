@@ -27,10 +27,11 @@ class BestBooks::CLI
       selection = gets.strip.downcase
       
       if selection.to_i > 0 && selection.to_i <= @books.size
-        book = @books[selection.to_i - 1]
+        book = @books[selection.to_i - 1] ### Can combine line 30 + 31?
         book.add_deets_if_needed
-        puts "\nBest #{book.category} #{@year}:" ### This is weird for #5 'best of the best' category
-        puts "#{book.title} by #{book.author}"
+        puts "\nBest #{book.category} #{@year}:" ### This is weird for #5 'best of the best' category - add a nested if statement to account for category starting with "Best"
+        puts "#{book.title}"
+        puts "by #{book.author}"
         puts "#{book.votes}"
         puts "\n#{book.blurb}\n "
 

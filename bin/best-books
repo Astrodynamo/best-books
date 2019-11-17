@@ -4,8 +4,5 @@ require './lib/best_books'
 
 BestBooks::CLI.new.call
 
-#refactor and consider other functions
-#record coding video
-#test
 #record walkthrough video
 #blog post
