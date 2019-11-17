@@ -20,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the program from bin/best-books.
+To operate it, enter a valid command from the list provided.
 
 ## Development
 
