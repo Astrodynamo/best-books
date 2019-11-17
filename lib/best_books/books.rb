@@ -6,8 +6,6 @@ class BestBooks::Books
     @@all
   end
   
-  ### move scrapers to a scraper class, define find or make books method to handle double scrapes
-  
   def self.make_books (year)
     doc = Nokogiri::HTML(open("https://www.goodreads.com/choiceawards/best-books-#{year}"))
     doc.css("div.category.clearFix").each do |object|
@@ -25,6 +23,12 @@ class BestBooks::Books
     self.title = doc.css("a.winningTitle").text.strip
     self.author = doc.css("a.authorName span").text.strip
     self.blurb = doc.search("#description").text.strip.gsub("â\u0080\u0099", "'")
+  end
+  
+  def add_deets_if_needed
+    if !self.votes && !self.title && !self.author && !self.blurb
+      self.add_deets
+    end
   end
   
 end

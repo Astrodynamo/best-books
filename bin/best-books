@@ -7,6 +7,5 @@ BestBooks::CLI.new.call
 #refactor and consider other functions
 #record coding video
 #test
-#fix gemspec for publishing?
 #record walkthrough video
 #blog post

@@ -26,9 +26,9 @@ class BestBooks::CLI
       puts "Choose a category number to see the latest winner, type 'list' to see the list again, or type 'exit'."
       selection = gets.strip.downcase
       
-      if selection.to_i > 0 ### needs upper limiter, use @books size
+      if selection.to_i > 0 && selection.to_i <= @books.size
         book = @books[selection.to_i - 1]
-        book.add_deets ### need to eliminate double scraping for same selection
+        book.add_deets_if_needed
         puts "\nBest #{book.category} #{@year}:" ### This is weird for #5 'best of the best' category
         puts "#{book.title} by #{book.author}"
         puts "#{book.votes}"
